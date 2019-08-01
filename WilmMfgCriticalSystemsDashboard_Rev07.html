@@ -1,0 +1,206 @@
+<html style="color:black;">
+
+<!-------------------------------------
+Author:		Patrick.coffey@analog.com
+Author:		Michael.manley@analog.com
+Date:		21-Apr-2016
+Updated:	6-June-2016
+Rev: 		Prototype07
+-------------------------------------->
+<head>
+<meta http-equiv="refresh" content="10">
+<SCRIPT type="text/javascript">
+
+/*(function getLastMod(frame,cell){
+var myFrm = document.getElementById(getLastMod.arguments[0]);
+var lastModif = new Date(myFrm.contentWindow.document.lastModified);
+var today = new Date();
+var todayms = today.getTime();
+var lastModifms = lastModif.getTime();
+var difference = Math.abs(todayms-lastModifms);
+if (difference > 900000){
+document.getElementById(getLastMod.arguments[1]).backgroundColor = "#FFA500";
+alert("This is not current");
+}else{
+document.getElementById(getLastMod.arguments[1]).backgroundColor = "00FF00";
+alert("This is current");
+}
+*/
+
+
+<!-- Used to generate timestamp
+	function getTimeStamp() {
+		// Source: https://gist.github.com/hurjas/2660489
+		var now = new Date();
+		var date = [now.getMonth() + 1, now.getDate(), now.getFullYear()];
+		var time = [now.getHours(), now.getMinutes(), now.getSeconds()];
+		for (var i = 1; i < 3; i++) {
+			if (time[i] < 10) {
+				time[i] = "0" + time[i];}}
+			document.write("as of " + date.join("/") + " " + time.join(":"));
+	}
+
+<!-- Used to Read Status file and check timestamp to verify validity.	
+	
+	function LoadFile_Status(frame,cell){
+		var oFrame = document.getElementById(LoadFile_Status.arguments[0]);
+		var lastModif = new Date(oFrame.contentWindow.document.lastModified);
+		var today = new Date();
+		var todayms = today.getTime();
+		var lastModifms = lastModif.getTime();
+		var difference = Math.abs(todayms-lastModifms);
+		var strRawContents = oFrame.contentWindow.document.body.textContent;
+		var ocell = document.getElementById(LoadFile_Status.arguments[1]);
+		ocell.innerHTML = strRawContents
+		ocell.style.fontSize = "40px";
+		ocell.style.textAlign="center";
+		ocell.style.fontWeight='bold';
+		if(strRawContents.indexOf("Running")>=0){
+			ocell.style.color = "Green";
+		} else if(strRawContents.indexOf("Down")>=0){
+			ocell.style.color = "#FF0000";
+		} else {
+			ocell.innerHTML = strRawContents;
+			ocell.style.color = "#FF0000";
+		}
+		if(strRawContents.indexOf("Running")>=0 && difference > 960000){
+			ocell.style.color = "#FF8000"
+		} else if(strRawContents.indexOf("Down")>=0 && difference > 960000){
+			ocell.bgColor = "FF8000"
+			ocell.innerHTML = "Down"
+			ocell.style.color = "FF0000"
+		}
+	}
+
+<!-- Used to check Location file and check timestamp to verify validity.
+	function LoadFile_Location(frame,cell){
+		var oFrame = document.getElementById(LoadFile_Location.arguments[0]);
+		var lastModif = new Date(oFrame.contentWindow.document.lastModified);
+		var today = new Date();
+		var todayms = today.getTime();
+		var lastModifms = lastModif.getTime();
+		var difference = Math.abs(todayms-lastModifms);
+		var strRawContents = oFrame.contentWindow.document.body.textContent;
+		var ocell = document.getElementById(LoadFile_Location.arguments[1]);
+		ocell.style.fontSize = "40px";
+		ocell.style.textAlign="center";
+		ocell.style.fontWeight='bold';
+		if(strRawContents.indexOf("Bldg 5")>=0){
+			ocell.innerHTML = strRawContents;
+			ocell.style.color = "#000000";
+		}else if(strRawContents.indexOf("Bldg 4")>=0){
+			ocell.innerHTML = strRawContents;
+			ocell.style.color = "#000000";
+		}else if(strRawContents.indexOf("Bldg 2")>=0){
+			ocell.innerHTML = strRawContents;
+			ocell.style.color= "#000000";
+		}else{
+			ocell.innerHTML = strRawContents;
+			ocell.style.color = "#FF0000";
+		}
+		if(difference > 960000){
+			ocell.style.color = "#FF8000"
+		}
+	}
+	
+<!-- Used to load the Location file for static Location files without checking timestamp.
+	function LoadLocation(frame,cell){
+	var oFrame = document.getElementById(LoadLocation.arguments[0]);
+	var strRawContents = oFrame.contentWindow.document.body.textContent;
+	var ocell = document.getElementById(LoadLocation.arguments[1]);
+	ocell.style.color = "000000";
+	ocell.innerHTML = strRawContents;
+	ocell.style.fontSize = "40px";
+	ocell.style.textAlign="center";
+	ocell.style.fontWeight='bold';
+	}
+
+</SCRIPT>
+
+<TITLE>Wilmington Manufacturing Critical Systems</TITLE>
+
+</HEAD>
+ 
+<BODY>
+
+	<style>
+	
+		
+		iframe {
+		visibility: hidden;
+		position: absolute;
+		left: 0; top: 0;
+		height: 0; width: 0
+		border: none;
+		}
+		
+		H1{
+		font-size: 40px
+		}
+		
+		H2{
+		font-size: 60px
+		}
+		
+		
+		
+		
+		
+	</style>
+
+	<TABLE border="0" style="font-family:verdana;" width="90%" height="90%" align="center">
+		<TH colspan="3"><H2 style="color:green;">Wilmington Manufacturing Critical Systems</H2></TH>
+		<TR>
+			<TH colspan="3"><H1 style="color:green;">Status <script>getTimeStamp();</script></H1></TH>
+		</TR>
+		<TR>
+			<TD><H1 style="text-align:center;"><font>System</font></H1></TD>
+			<TD><H1 style="text-align:center;"><font>Location</font></H1></TD>
+			<TD><H1 style="text-align:center;"><font>Status</font></H1></TD>
+		</TR>
+		<TR>
+			<TD><H1><font style="color:blue;">Wilmington PROMIS Primary Status</font></H1></TD>
+			<TD id="wilm_loc_cell"><iframe id="wilm_location" src="LOCATION/WILMINGTON/LOCATION.TXT" onload=LoadFile_Location('wilm_location','wilm_loc_cell') frameborder="0" scrolling="no" allowtransparency="true"></iframe></TD>
+			<TD id="wilm_stat_cell"><iframe id="wilm_status" src="STATUS/WILMINGTON/STATUS.TXT" onload=LoadFile_Status('wilm_status','wilm_stat_cell') frameborder="0" scrolling="no" allowtransparency="true"></iframe></TD>
+			</TR>
+		<TR>
+			<TD><H1><font style="color:blue;">Backend Foundry PROMIS Primary Status</font></H1></TD>
+			<TD id="bef_loc_cell"><iframe id="bef_location" width="75" height="35" src="LOCATION/BEF/LOCATION.TXT" onload=LoadFile_Location('bef_location','bef_loc_cell') frameborder="0" scrolling="no" allowtransparency="true"></iframe></TD>
+			<TD id="bef_stat_cell"><iframe id="bef_status" width="75" height="35" src="STATUS/BEF/STATUS.TXT" onload=LoadFile_Status('bef_status','bef_stat_cell') frameborder="0" scrolling="no" allowtransparency="true"></iframe></TD>
+		</TR>
+		<TR>
+			<TD><H1><font style="color:blue;">STATIONworks Primary Server Status</font></H1></TD> 
+			<TD id="sw_loc_cell"><iframe id="sw_location" width="75" height="35" src="LOCATION/STATIONWORKS/LOCATION.TXT" onload=LoadFile_Location('sw_location','sw_loc_cell') frameborder="auto" scrolling="no" allowtransparency="true"></iframe></TD>
+			<TD id="sw_stat_cell"><iframe id="sw_status" width="75" height="35" src="STATUS/STATIONWORKS/STATUS.TXT" onload=LoadFile_Status('sw_status','sw_stat_cell') frameborder="auto" scrolling="no" allowtransparency="true"></iframe></TD>
+		</TR>
+		<TR>
+			<TD><H1><font style="color:blue;">Building Management System (BMS) Server Status</font></H1></TD>
+			<TD id="bms_loc_cell"><iframe id="bms_location" width="75" height="35" src="LOCATION/BMS/LOCATION.TXT" onload=LoadFile_Location('bms_location','bms_loc_cell') frameborder="auto" scrolling="no" allowtransparency="true"></iframe></TD>
+			<TD id="bms_stat_cell"><iframe id="bms_status" width="75" height="35" src="STATUS/BMS/STATUS.TXT" onload=LoadFile_Status('bms_status','bms_stat_cell') frameborder="auto" scrolling="no" allowTransparency="true"></iframe></TD>
+		</TR>
+		<TR>
+			<TD><H1><font style="color:blue;">LAN Paging Server Status</font></H1></TD>
+			<TD id="lan_loc_cell"><iframe id="lan_location" width="75" height="35" src="LOCATION/LAN/LOCATION.TXT" onload=LoadLocation('lan_location','lan_loc_cell') frameborder="auto" scrolling="no" allowtransparency="true"></iframe></TD>
+			<TD id="lan_stat_cell"><iframe id="lan_status" width="75" height="35" src="STATUS/LAN/STATUS.TXT" onload=LoadFile_Status('lan_status','lan_stat_cell') frameborder="auto" scrolling="no" allowtransparency="true"></iframe></TD>
+		</TR>
+		<TR>
+			<TD><H1><font style="color:blue;">DI Water Server Status</font></H1></TD>
+			<TD id="di_loc_cell"><iframe id="di_location" width="75" height="35" src="LOCATION/DIWATER/LOCATION.TXT" onload=LoadLocation('di_location','di_loc_cell') frameborder="auto" scrolling="no" allowtransparency="true"></iframe></TD>
+			<TD id="di_stat_cell"><iframe id="di_status" width="75" height="35" src="STATUS/DIWATER/STATUS.TXT" onload=LoadFile_Status('di_status','di_stat_cell') frameborder="auto" scrolling="no" allowtransparency="true"></iframe></TD>
+		</TR>
+		<TR>
+			<TD><H1><font style="color:blue;">APEX Processes Status</font></H1></TD>
+			<TD id="apex_loc_cell"><iframe id="apex_location" width="75" height="35" src="LOCATION/APEX/LOCATION.TXT" onload=LoadFile_Location('apex_location','apex_loc_cell') frameborder="auto" scrolling="no" allowtransparency="true"></iframe></TD>
+			<TD id="apex_stat_cell"><iframe id="apex_status" width="75" height="35" src="STATUS/APEX/STATUS.TXT" onload=LoadFile_Status('apex_status','apex_stat_cell') frameborder="auto" scrolling="no" allowtransparency="true"></iframe></TD>
+		</TR>
+		<TR>
+			<TD colspan="2"><H5>Analog Devices - Wilmington Manufacturing IS</H6></TD>
+	<!--		<TD><H5><script>getTimeStamp();</script></H5></TD>
+		</TR>
+	</TABLE>
+<body>
+
+
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<html>
+<head>
+<title>Last Modified</title>
+<script type="text/javascript">
+function getLastMod(){
+var myFrm = document.getElementById('bms');
+var lastModif = new Date(myFrm.contentWindow.document.lastModified);
+var today = new Date();
+var todayms = today.getTime();
+var lastModifms = lastModif.getTime();
+var difference = Math.abs(todayms-lastModifms);
+if(difference > 900000){
+alert ("this is whack")
+document.getElementById('difference').innerHTML = "Script Not Current"; 
+} else {
+document.getElementById('bms').innerHTML = "Fuck this";
+}
+
+}
+
+</script>
+</head>
+<body>
+<span id="LastModified"></span> <BR> 
+<span id="today"></span> <BR>
+<span id="todayms"></span> <BR>
+<span id="lastModifms"></span> <BR>
+<span id="difference"></span> <BR>
+<span id="img"></span>
+
+
+<iframe id="bms" onload="getLastMod()" src="http://localhost/status/bms/status.txt" style="display:none;">
+</iframe> 
+
+<iframe id="img" src="http://localhost/status/bms/status.txt" frameborder=0 
+</iframe>  
+
+</body>
+</html>

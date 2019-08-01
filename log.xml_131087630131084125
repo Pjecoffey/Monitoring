@@ -1,0 +1,10 @@
+﻿<trace date="2016-05-26 15:03:19" category="Error"><logdate>5/26/2016 3:03:19 PM</logdate><thread>LibraryAgent</thread><method>LibraryAgent - Run</method><message>Exception in Run: Could not find file &apos;C:\MONITORING\requiredFiles.xml&apos;.</message>
+</trace>
+<trace date="2016-05-26 15:03:19" category="Error"><logdate>5/26/2016 3:03:19 PM</logdate><thread>UI Thread</thread><method>MainForm - ChangeToNextLayout</method><message>Prepare Layout Failed. Exception raised was: Default layout</message>
+</trace>
+<trace date="2016-05-26 15:03:19" category="Error"><logdate>5/26/2016 3:03:19 PM</logdate><thread>UI Thread</thread><method>MainForm - ChangeToNextLayout</method><message>Layout Change to  failed. Exception raised was: Default layout</message>
+</trace>
+<trace date="2016-05-26 15:03:29" category="Error"><logdate>5/26/2016 3:03:29 PM</logdate><thread>UI Thread</thread><method>MainForm - ChangeToNextLayout</method><message>Prepare Layout Failed. Exception raised was: Default layout</message>
+</trace>
+<trace date="2016-05-26 15:03:29" category="Error"><logdate>5/26/2016 3:03:29 PM</logdate><thread>UI Thread</thread><method>MainForm - ChangeToNextLayout</method><message>Layout Change to  failed. Exception raised was: Default layout</message>
+</trace>
