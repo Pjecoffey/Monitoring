@@ -1,2 +1,7 @@
 FROM httpd:2.4
-COPY ./public-html/ /usr/local/apache2/htdocs/
+
+COPY . /usr/local/apache2/htdocs/
+
+CMD apache2 -D FOREGROUND
+
+RUN rm /usr/local/apache2/htdocs/index.html 
